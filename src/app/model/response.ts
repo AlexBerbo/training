@@ -1,7 +1,7 @@
 export interface ApiResponse {
     get: string
     parameters: Parameters
-    errors: any[]
+    errors: string[]
     results: number
     paging: Paging
     response: Response[]

@@ -1,7 +1,7 @@
 export interface TeamResponse {
     get: string
     parameters: Parameters
-    errors: any[]
+    errors: string[]
     results: number
     paging: Paging
     response: Response[]
@@ -26,7 +26,7 @@ export interface TeamResponse {
   
   export interface Fixture {
     id: number
-    referee: any
+    referee: string
     timezone: string
     date: string
     timestamp: number
@@ -37,7 +37,7 @@ export interface TeamResponse {
   
   export interface Periods {
     first: number
-    second: any
+    second: number
   }
   
   export interface Venue {
@@ -99,17 +99,17 @@ export interface TeamResponse {
   }
   
   export interface Fulltime {
-    home: any
-    away: any
+    home: number
+    away: number
   }
   
   export interface Extratime {
-    home: any
-    away: any
+    home: number
+    away: number
   }
   
   export interface Penalty {
-    home: any
-    away: any
+    home: number
+    away: number
   }
   
