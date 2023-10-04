@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   constructor(private route: ActivatedRoute, private footballService: FootballService) { }
   data$!: Observable<{ appState: DataState, response?: ApiResponse, error?: HttpErrorResponse }>;
   readonly DataState = DataState;
-  private sub: any;
+  private sub!: Params;
   league: number = 0;
 
   ngOnInit(): void {

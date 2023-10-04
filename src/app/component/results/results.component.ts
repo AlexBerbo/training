@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, catchError, map, of } from 'rxjs';
 import { DataState } from 'src/app/enum/dataState';
 import { TeamResponse } from 'src/app/model/team-response';
@@ -18,7 +18,7 @@ export class ResultsComponent implements OnInit {
   season: string = '';
   teamId: string = '';
   league: string = '';
-  private sub: any;
+  private sub!: Params;
   state$!: Observable<{ appState: DataState, response?: TeamResponse, error?: HttpErrorResponse }>;
   readonly DataState = DataState;
 
