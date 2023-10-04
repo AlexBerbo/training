@@ -1,0 +1,40 @@
+<div class="container" *ngIf="(state$ | async) as state" [ngSwitch]="state.appState">
+    <div class="row">
+        <div class="col-12 mb-3 mb-lg-5">
+            <div class="overflow-hidden card table-nowrap table-card">
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead class="small text-uppercase bg-body text-muted">
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of state.response?.response!.slice(0, 10)" class="align-middle">
+                                <td><img src="{{ data.teams.home.logo }}" width="50px" height="50px"
+                                        class="avatar sm rounded-pill me-3 flex-shrink-0" alt="Customer"></td>
+                                <td>{{ data.teams.home.name }}</td>
+                                <td>{{ data.goals.home }}</td>
+                                <td> - </td>
+                                <td>{{ data.goals.away }}</td>
+                                <td>{{ data.teams.away.name }}</td>
+                                <td><img src="{{ data.teams.away.logo }}" width="50px" height="50px"
+                                        class="avatar sm rounded-pill me-3 flex-shrink-0" alt="Customer"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" (click)="goBack()" class="btn btn-primary">Back</button>
+    <div *ngIf="state.appState === DataState.ERROR">
+        <p>{{ state.error }}</p>
+    </div>
+</div>

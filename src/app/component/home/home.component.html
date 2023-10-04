@@ -1,0 +1,272 @@
+<ng-container *ngIf="(data$ | async) as data" [ngSwitch]="data.appState">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container" style="text-align: center;">
+           <a class="navbar-brand">
+               <i style="margin-right: 5px;" class="bi bi-safe"></i>
+               Football API
+           </a>
+           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mb-2 mb-lg-0" >
+                 <li class="nav-item">
+                    <a class="nav-link" (click)="switchLeague('ENGLISH', 39, 2023)" id="else" name="ENGLISH" role="button" aria-expanded="false">
+                       English
+                    </a>
+                    <button (click)="switchLeague('ENGLISH', 39, 2023)" id="English">English</button>
+                 </li>
+                 <li class="nav-item">
+                   <a class="nav-link" (click)="switchLeague('SPANISH', 140, 2023)" id="navbarDropdownBlog" role="button" aria-expanded="false">
+                      Spanish
+                   </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="switchLeague('ITALIAN', 135, 2023)" id="navbarDropdownBlog" role="button" aria-expanded="false">
+                       Italian
+                    </a>
+                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link" (click)="switchLeague('GERMAN', 78, 2023)" id="navbarDropdownBlog" role="button" aria-expanded="false">
+                       German
+                    </a>
+                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link" (click)="switchLeague('FRENCH', 61, 2023)" id="navbarDropdownBlog" role="button" aria-expanded="false">
+                       French
+                    </a>
+                 </li>
+              </ul>
+           </div>
+        </div>
+     </nav>
+
+    <ng-container *ngIf="data.appState === DataState.ENGLISH">
+            <div class="container m-2" id="container-main">
+                <div class="row">
+                    <div class="col-12 mb-3 mb-lg-5">
+                        <div class="overflow-hidden card table-nowrap table-card">
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead class="small text-uppercase bg-body text-muted">
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th>Name</th>
+                                            <th>Games</th>
+                                            <th>W</th>
+                                            <th>L</th>
+                                            <th>D</th>
+                                            <th>Goals Difference</th>
+                                            <th>Points</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let response of data.response?.response![0].league.standings[0]" class="align-middle">
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="{{ response.team.logo }}" width="50px" height="50px" class="avatar sm rounded-pill me-3 flex-shrink-0" alt="Customer">
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                            <td><a [routerLink]="['/result/', response.team.id, data.response?.response![0].league.id, data.response?.response![0].league.season]">{{ response.team.name }}</a></td>
+                                            <td>{{ response.all.played }}</td>
+                                            <td>{{ response.all.win }}</td>
+                                            <td>{{ response.all.lose }}</td>
+                                            <td>{{ response.all.draw }}</td>
+                                            <td>{{ response.goalsDiff }}</td>
+                                            <td>{{ response.points }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </ng-container>
+
+    <ng-container *ngIf="data.appState === DataState.ITALIAN">
+        <div class="container m-2" id="container-main">
+            <div class="row">
+                <div class="col-12 mb-3 mb-lg-5">
+                    <div class="overflow-hidden card table-nowrap table-card">
+                        <div class="table-responsive">
+                            <table *ngFor="let response of data.response?.response![0].league.standings[0]" class="table mb-0">
+                                <thead class="small text-uppercase bg-body text-muted">
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Games</th>
+                                        <th>W</th>
+                                        <th>L</th>
+                                        <th>D</th>
+                                        <th>Goals Difference</th>
+                                        <th>Points</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="align-middle">
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{ response.team.logo }}" width="50px" height="50px" class="avatar sm rounded-pill me-3 flex-shrink-0" alt="Customer">
+                                            </div>
+                                        </td>
+                                        <td></td>
+                                        <td><a [routerLink]="['/results/', response.team.name]">{{ response.team.name }}</a></td>
+                                        <td>{{ response.all.played }}</td>
+                                        <td>{{ response.all.win }}</td>
+                                        <td>{{ response.all.lose }}</td>
+                                        <td>{{ response.all.draw }}</td>
+                                        <td>{{ response.goalsDiff }}</td>
+                                        <td>{{ response.points }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="data.appState === DataState.GERMAN">
+       <div class="container m-2" id="container-main">
+                <div class="row">
+                    <div class="col-12 mb-3 mb-lg-5">
+                        <div class="overflow-hidden card table-nowrap table-card">
+                            <div class="table-responsive">
+                                <table *ngFor="let response of data.response?.response![0].league.standings[0]" class="table mb-0">
+                                    <thead class="small text-uppercase bg-body text-muted">
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th>Name</th>
+                                            <th>Games</th>
+                                            <th>W</th>
+                                            <th>L</th>
+                                            <th>D</th>
+                                            <th>Goals Difference</th>
+                                            <th>Points</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="align-middle">
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="{{ response.team.logo }}" width="50px" height="50px" class="avatar sm rounded-pill me-3 flex-shrink-0" alt="Customer">
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                            <td><a [routerLink]="['/result/', response.team.id, data.response?.response![0].league.id, data.response?.response![0].league.season]">{{ response.team.name }}</a></td>
+                                            <td>{{ response.all.played }}</td>
+                                            <td>{{ response.all.win }}</td>
+                                            <td>{{ response.all.lose }}</td>
+                                            <td>{{ response.all.draw }}</td>
+                                            <td>{{ response.goalsDiff }}</td>
+                                            <td>{{ response.points }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </ng-container>
+
+    <ng-container *ngIf="data.appState === DataState.SPANISH">
+        <div class="container m-2" id="container-main">
+            <div class="row">
+                <div class="col-12 mb-3 mb-lg-5">
+                    <div class="overflow-hidden card table-nowrap table-card">
+                        <div class="table-responsive">
+                            <table *ngFor="let response of data.response?.response![0].league.standings[0]" class="table mb-0">
+                                <thead class="small text-uppercase bg-body text-muted">
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Games</th>
+                                        <th>W</th>
+                                        <th>L</th>
+                                        <th>D</th>
+                                        <th>Goals Difference</th>
+                                        <th>Points</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="align-middle">
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{ response.team.logo }}" width="50px" height="50px" class="avatar sm rounded-pill me-3 flex-shrink-0" alt="Customer">
+                                            </div>
+                                        </td>
+                                        <td></td>
+                                        <td><a [routerLink]="['/result/', response.team.id, data.response?.response![0].league.id, data.response?.response![0].league.season]">{{ response.team.name }}</a></td>
+                                        <td>{{ response.all.played }}</td>
+                                        <td>{{ response.all.win }}</td>
+                                        <td>{{ response.all.lose }}</td>
+                                        <td>{{ response.all.draw }}</td>
+                                        <td>{{ response.goalsDiff }}</td>
+                                        <td>{{ response.points }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="data.appState === DataState.FRENCH">
+        <div class="container m-2" id="container-main">
+            <div class="row">
+                <div class="col-12 mb-3 mb-lg-5">
+                    <div class="overflow-hidden card table-nowrap table-card">
+                        <div class="table-responsive">
+                            <table *ngFor="let response of data.response?.response![0].league.standings[0]" class="table mb-0">
+                                <thead class="small text-uppercase bg-body text-muted">
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Games</th>
+                                        <th>W</th>
+                                        <th>L</th>
+                                        <th>D</th>
+                                        <th>Goals Difference</th>
+                                        <th>Points</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="align-middle">
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{ response.team.logo }}" width="50px" height="50px" class="avatar sm rounded-pill me-3 flex-shrink-0" alt="Customer">
+                                            </div>
+                                        </td>
+                                        <td></td>
+                                        <td><a [routerLink]="['/result/', response.team.id, data.response?.response![0].league.id, data.response?.response![0].league.season]">{{ response.team.name }}</a></td>
+                                        <td>{{ response.all.played }}</td>
+                                        <td>{{ response.all.win }}</td>
+                                        <td>{{ response.all.lose }}</td>
+                                        <td>{{ response.all.draw }}</td>
+                                        <td>{{ response.goalsDiff }}</td>
+                                        <td>{{ response.points }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="data.appState === DataState.ERROR">
+        <div>
+            <p>{{ data.error }}</p>
+        </div>
+    </ng-container>
+</ng-container>
